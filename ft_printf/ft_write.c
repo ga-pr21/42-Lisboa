@@ -1,24 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_write.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabrielp <gabrielp@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 15:23:25 by gabrielp          #+#    #+#             */
-/*   Updated: 2023/04/14 20:07:50 by gabrielp         ###   ########.fr       */
+/*   Created: 2023/04/24 22:34:42 by gabrielp          #+#    #+#             */
+/*   Updated: 2023/04/25 21:28:53 by gabrielp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_bzero(void *ptr, size_t len)
+void	ft_write_char(char str, int *ret)
 {
-	unsigned char	*p;
+	write(1, &str, 1);
+	(*ret)++;
+}
 
-	p = ptr;
-	while (len-- > 0)
+void	ft_write_string(char *args, int *ret)
+{
+	size_t	i;
+
+	i = 0;
+	if (!args)
 	{
-		*p++ = 0;
+		write(1, "(null)", 6);
+		(*ret) += 6;
+		return ;
+	}
+	else
+	{
+		while (args[i])
+		{
+			ft_write_char(args[i], ret);
+			i++;
+		}
 	}
 }

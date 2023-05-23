@@ -1,39 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabrielp <gabrielp@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/16 01:51:34 by gabrielp          #+#    #+#             */
-/*   Updated: 2023/04/22 00:36:38 by gabrielp         ###   ########.fr       */
+/*   Created: 2023/04/19 00:06:07 by gabrielp          #+#    #+#             */
+/*   Updated: 2023/04/20 23:33:39 by gabrielp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-char	*ft_strrchr(const char *s, int c)
+t_list	*ft_lstlast(t_list *lst)
 {
-	int				len;
+	t_list	*lst_element;
+	t_list	*last_lst;
 
-	len = ft_strlen(s);
-	if (c == '\0')
+	if (!lst)
+		return (NULL);
+	lst_element = lst;
+	while (lst_element)
 	{
-		return ((char *)s + len);
+		last_lst = lst_element;
+		lst_element = lst_element->next;
 	}
-	while (len >= 0)
-	{
-		if (s[len] == (char)c)
-			return ((char *)s + len);
-		len--;
-	}
-	return (NULL);
+	return (last_lst);
 }
 /*
 int main()
 {
-	char *str = "teste";
-	printf("%s\n", ft_strrchr(str, 'e'));
+	t_list *list = NULL;
+	list = ft_lstnew("Salve");
+	ft_lstadd_front(&list, ft_lstnew("Cambada"));
+	ft_lstadd_front(&list, ft_lstnew("!"));
+	
+	t_list *last = ft_lstlast(list);
+	
+	printf("%s\n", (char *)last->content);
 }
 */

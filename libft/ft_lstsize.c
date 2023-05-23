@@ -1,24 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabrielp <gabrielp@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 15:23:25 by gabrielp          #+#    #+#             */
-/*   Updated: 2023/04/14 20:07:50 by gabrielp         ###   ########.fr       */
+/*   Created: 2023/04/18 23:45:58 by gabrielp          #+#    #+#             */
+/*   Updated: 2023/04/20 20:36:19 by gabrielp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-void	ft_bzero(void *ptr, size_t len)
+int	ft_lstsize(t_list *lst)
 {
-	unsigned char	*p;
+	int		count;
+	t_list	*element;
 
-	p = ptr;
-	while (len-- > 0)
+	count = 0;
+	element = lst;
+	while (element != NULL)
 	{
-		*p++ = 0;
+		count++;
+		element = element->next;
 	}
+	return (count);
 }
+/*
+int main()
+{
+	t_list *nome = ft_lstnew("Gabriel");
+	t_list *sobre = ft_lstnew("Nogueira");
+	t_list *lst = NULL;
+	ft_lstadd_back(&lst, nome);
+	ft_lstadd_back(&lst, sobre);
+	int size = ft_lstsize(lst);
+	printf("%d\n", size);
+}
+*/

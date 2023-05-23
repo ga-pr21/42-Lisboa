@@ -1,39 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabrielp <gabrielp@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/16 01:51:34 by gabrielp          #+#    #+#             */
-/*   Updated: 2023/04/22 00:36:38 by gabrielp         ###   ########.fr       */
+/*   Created: 2023/04/18 16:16:42 by gabrielp          #+#    #+#             */
+/*   Updated: 2023/04/18 21:15:01 by gabrielp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-char	*ft_strrchr(const char *s, int c)
+/*   hello word  */
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	int				len;
+	size_t	len;
+	size_t	ini;
+	size_t	fm;
 
-	len = ft_strlen(s);
-	if (c == '\0')
-	{
-		return ((char *)s + len);
-	}
-	while (len >= 0)
-	{
-		if (s[len] == (char)c)
-			return ((char *)s + len);
-		len--;
-	}
-	return (NULL);
+	if (!s1 || !set)
+		return (NULL);
+	if (!*s1 || !*set)
+		return (ft_strdup(s1));
+	len = ft_strlen(s1) + 1;
+	ini = 0;
+	while (s1[ini] && ft_strchr(set, s1[ini]))
+		ini++;
+	fm = len;
+	while (ini < fm && ft_strchr(set, s1[fm - 1]))
+		fm--;
+	return (ft_substr(s1, ini, (fm - ini)));
 }
 /*
 int main()
 {
-	char *str = "teste";
-	printf("%s\n", ft_strrchr(str, 'e'));
+	printf("%s\n", ft_strtrim("  hello word  ", " "));
 }
 */

@@ -1,24 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabrielp <gabrielp@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 15:23:25 by gabrielp          #+#    #+#             */
-/*   Updated: 2023/04/14 20:07:50 by gabrielp         ###   ########.fr       */
+/*   Created: 2023/04/13 23:46:23 by gabrielp          #+#    #+#             */
+/*   Updated: 2023/04/15 19:51:10 by gabrielp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-void	ft_bzero(void *ptr, size_t len)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	unsigned char	*p;
+	size_t	i;
 
-	p = ptr;
-	while (len-- > 0)
+	i = 0;
+	if (size > 0)
 	{
-		*p++ = 0;
+		while (src[i] && i < (size - 1))
+		{
+			dest[i] = src[i];
+			i++;
+		}
+		dest[i] = '\0';
 	}
+	while (src[i])
+	{
+		i++;
+	}
+	return (i);
 }
+/*
+int main()
+{
+	char dest[20];
+	char *src = "galo doido veiooooo";
+
+	printf("%d | %s\n", ft_strlcpy(dest, src, 16), dest);
+}
+*/

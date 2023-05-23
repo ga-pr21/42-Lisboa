@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabrielp <gabrielp@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 15:23:25 by gabrielp          #+#    #+#             */
-/*   Updated: 2023/04/14 20:07:50 by gabrielp         ###   ########.fr       */
+/*   Created: 2023/04/18 21:50:17 by gabrielp          #+#    #+#             */
+/*   Updated: 2023/04/22 17:29:34 by gabrielp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-void	ft_bzero(void *ptr, size_t len)
+void	ft_putstr_fd(char *str, int fd)
 {
-	unsigned char	*p;
+	int	i;
 
-	p = ptr;
-	while (len-- > 0)
+	i = 0;
+	while (str[i])
 	{
-		*p++ = 0;
+		write(fd, &str[i], 1);
+		i++;
 	}
 }
+
+// int main()
+// {
+// 	ft_putstr_fd("Gabriel\n", 1);
+// }
